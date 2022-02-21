@@ -111,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       MaterialPageRoute(builder: (context) => const LoginPage())));
 
                 }),
-                const SizedBox(height: 40,),
+                const SizedBox(height: 40),
                 signUpOption(context)
               ],
             ),
