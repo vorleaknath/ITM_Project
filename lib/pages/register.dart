@@ -88,22 +88,22 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: reuseTextField("Password", Icons.lock, true, _passwordTextController),
                 ),
-                // const SizedBox(height: 15,),
-                // Container(
-                //   width: 300,
-                //   height: 60,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(10),
-                //     boxShadow: const [
-                //       BoxShadow(
-                //         color: Colors.black38,
-                //         blurRadius: 4,
-                //         offset: Offset(0, 3),
-                //       ),
-                //     ],
-                //   ),
-                //   child: reuseTextField("Confirm Password", Icons.lock, true, _passwordTextController),
-                // ),
+                const SizedBox(height: 15,),
+                Container(
+                  width: 300,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black38,
+                        blurRadius: 4,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: reuseTextField("Confirm Password", Icons.lock, true, _passwordTextController),
+                ),
                 const SizedBox(height: 25,),
                 signInButton(context, false, (){
                   FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text,
@@ -111,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       MaterialPageRoute(builder: (context) => const LoginPage())));
 
                 }),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 40,),
                 signUpOption(context)
               ],
             ),

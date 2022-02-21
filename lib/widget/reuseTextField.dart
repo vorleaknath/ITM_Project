@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-TextField reuseTextField(String text, IconData icon, isPasswordType,
+TextFormField reuseTextField(String text, IconData icon, isPasswordType,
     TextEditingController controller){
-  return TextField(
+  return TextFormField(
     controller: controller,
     obscureText: isPasswordType,
     autocorrect: !isPasswordType,
@@ -36,5 +36,12 @@ TextField reuseTextField(String text, IconData icon, isPasswordType,
       ),
     ),
     keyboardType: isPasswordType ? TextInputType.visiblePassword : TextInputType.emailAddress,
+    validator: (value) {
+      if (value == null || value.isEmpty){
+
+      }
+      return null;
+    },
   );
 }
+
