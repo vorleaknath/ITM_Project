@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import '../constants/constant_color.dart';
 import '../widget/notification_drawer.dart';
 import '../widget/user_drawer.dart';
@@ -18,6 +17,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
 
       appBar: AppBar(
+        toolbarHeight: 70,
+        shadowColor: Colors.black,
         leading: Builder(builder: (context){
           return IconButton(
             icon: const Icon(Icons.menu, color: Colors.black, size: 30,),
@@ -29,19 +30,20 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           'Home Page',
           style: TextStyle(
+            fontWeight: FontWeight.bold,
             color: Colors.black,
-            fontSize: 22.0,
+            fontSize: 20.0,
           ),
         ),
         centerTitle: true,
         backgroundColor: bgHexColor,
-        elevation: 0,
+        elevation: 3,
         actions: [
           Builder(builder:(context){
             return IconButton(
               onPressed: (){
                 Scaffold.of(context).openEndDrawer();
-              }, 
+              },
               icon: const Icon(Icons.notifications, color: Colors.black, size: 30,)
             );
             }
@@ -53,9 +55,82 @@ class _HomePageState extends State<HomePage> {
       endDrawer:  const NotificationDrawer(),
 
 
-      
-      body: Container(
-        child: const Text("Home Pages"),
+      body: Column(
+        children: [
+          Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              width: 160,
+              height: 160,
+              margin: const EdgeInsets.symmetric(vertical: 25),
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFCACA),
+                borderRadius: BorderRadius.all(Radius.circular(40)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 4,
+                    offset: Offset(0, 5),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              width: 160,
+              height: 160,
+              // margin: const EdgeInsets.fromLTRB(0, 30, 20, 30),
+              decoration: const BoxDecoration(
+                  color: Color(0xFFFFCACA),
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  boxShadow: [
+                  BoxShadow(
+                  color: Colors.black45,
+                  blurRadius: 4,
+                  offset: Offset(0, 5),
+                )
+                ],
+              ),
+            )
+          ],
+        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: 160,
+                height: 160,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFFFCACA),
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 4,
+                      offset: Offset(0, 5),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: 160,
+                height: 160,
+                // margin: const EdgeInsets.fromLTRB(0, 30, 20, 30),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFFFCACA),
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 4,
+                      offset: Offset(0, 5),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )
+        ]
       ),
     );
   }
