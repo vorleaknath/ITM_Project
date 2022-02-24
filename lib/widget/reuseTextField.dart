@@ -65,7 +65,7 @@ TextFormField passwordTextField(String text, IconData icon, isPasswordType,
       }
       if (!RegExp(r'.{8,}$')
           .hasMatch(value)) {
-        return "Password at least 8 character";
+        return "Password at least 8 characters";
       }
       return null;
     },
