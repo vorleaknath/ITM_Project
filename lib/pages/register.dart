@@ -110,6 +110,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 MaterialPageRoute(
                                     builder: (context) => const LoginPage())));
                         setState(() {});
+                      }else {
+                        return "Password not matched";
                       }
                     }
                   }),
