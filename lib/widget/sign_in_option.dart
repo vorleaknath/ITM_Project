@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:untitled1/pages/login.dart';
 import 'package:untitled1/pages/register.dart';
 
 Row signInOption(BuildContext context){
@@ -43,7 +44,8 @@ Row signUpOption(BuildContext context) {
       ),
       GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage()));
           },
           child: Text(
             "Sign In",

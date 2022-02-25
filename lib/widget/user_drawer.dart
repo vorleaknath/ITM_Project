@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
 import 'package:untitled1/models/user_models.dart';
-
 import '../constants/constant_color.dart';
 import '../pages/user_profile_page.dart';
 
@@ -13,7 +13,7 @@ class UserDrawer extends StatefulWidget {
 }
 
 class _UserDrawerState extends State<UserDrawer> {
-  List<User> profilList = [
+  List<User> profileList = [
     User(
       name: "Minami Fuji",
       email: "minamifuji@gmail.com",
@@ -34,23 +34,23 @@ class _UserDrawerState extends State<UserDrawer> {
                 color: mainHexColor,
               ),
              child:  ListView.builder(
-               itemCount: profilList.length,
+               itemCount: profileList.length,
                itemBuilder: (context,index){
                  return ListTile(
                    leading: CircleAvatar(
                      radius: 30,
-                     backgroundImage: NetworkImage(profilList[index].img, ),
+                     backgroundImage: NetworkImage(profileList[index].img, ),
                      
                    ),
                    title: Text(
-                     profilList[index].name,
+                     profileList[index].name,
                      style: const TextStyle(
                        fontWeight: FontWeight.bold,
                        fontSize: 18
                      ),
                      ),
                    subtitle: Text(
-                     profilList[index].email,
+                     profileList[index].email,
                      style: const TextStyle(
                        fontSize: 16,
                       //  fontWeight: FontWeight.w500
@@ -69,12 +69,13 @@ class _UserDrawerState extends State<UserDrawer> {
             ListTile(
               leading: IconButton(
                 onPressed: () {}, 
-                icon: const Icon(Icons.logout,color: Colors.black, size: 30,)
+                icon: const Icon(Icons.logout,color: Colors.black, size: 20,)
               ),
               title: const Text(
                 'Log Out',
                 style: TextStyle( 
-                  fontSize: 18,
+                  fontSize: 16,
+
                   fontWeight: FontWeight.bold
                 )
                 ),
