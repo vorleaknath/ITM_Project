@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled1/widget/readInfo_widget.dart';
 import '../constants/constant_color.dart';
 import '../models/user_models.dart';
+import 'edit_profile.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({ Key? key }) : super(key: key);
@@ -117,10 +118,10 @@ List<User> users = [
                       
                           ),
                           onPressed: (){
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => const EditProfile())
-                            // );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const EditProfile())
+                            );
                           }, 
                           child: const Text(
                             'Edit',
