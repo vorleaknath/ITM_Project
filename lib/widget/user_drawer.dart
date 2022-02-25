@@ -46,7 +46,7 @@ class _UserDrawerState extends State<UserDrawer> {
                      profilList[index].name,
                      style: const TextStyle(
                        fontWeight: FontWeight.bold,
-                       fontSize: 20
+                       fontSize: 18
                      ),
                      ),
                    subtitle: Text(
@@ -74,7 +74,7 @@ class _UserDrawerState extends State<UserDrawer> {
               title: const Text(
                 'Log Out',
                 style: TextStyle( 
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold
                 )
                 ),

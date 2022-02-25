@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:untitled1/widget/readInfo_widget.dart';
 import '../constants/constant_color.dart';
 import '../models/user_models.dart';
-import '../widget/reuse_label.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({ Key? key }) : super(key: key);
@@ -68,9 +67,9 @@ List<User> users = [
                         backgroundImage: NetworkImage(users[index].img),
                       ),
                     ),
-                    Text(users[index].name,
-                     style: const TextStyle(
-                       fontSize: 24,
+                    const Text("Profile",
+                     style: TextStyle(
+                       fontSize: 20,
                        fontWeight: FontWeight.bold,
                      ),
                     ),
@@ -78,76 +77,56 @@ List<User> users = [
                 ),
                  Column(
                     children: [
-                     LabelContainer(
-                       child: ListTile(
-                         leading: const Icon(Icons.person),
-                         title: Text(
-                           users[index].name,
-                           style: const TextStyle(
-                             fontSize: 18
-                           ),
-                         ),
+                     Container(
+                       margin: const EdgeInsets.only(top: 10),
+                       child: ReadInfo(
+                         users[index].name, 
+                         Icons.person,
                        ),
                      ),
-                     LabelContainer(
-                       child: ListTile(
-                         leading: const Icon(Icons.email),
-                         title: Text(
-                           users[index].email,
-                           style: const TextStyle(
-                             fontSize: 18
-                           ),
-                         ),
+                     Container(
+                       child: ReadInfo(
+                         users[index].email,
+                         Icons.email
                        ),
                      ),
-                     LabelContainer(
-                       child: ListTile(
-                         leading: const Icon(Icons.lock),
-                         title: Text(
-                           users[index].password,
-                           style: const TextStyle(
-                             fontSize: 18
-                           ),
-                         ),
+
+                    Container(
+                      child: ReadInfo(
+                        users[index].password, 
+                        Icons.lock
+                      ),
+                    ),
+                     Container(
+                       child: ReadInfo(
+                         users[index].phoneNumber,
+                         Icons.phone
                        ),
                      ),
-                      LabelContainer(
-                       child: ListTile(
-                         leading: const Icon(Icons.phone),
-                         title: Text(
-                           users[index].phoneNumber,
-                           style: const TextStyle(
-                             fontSize: 18
-                           ),
-                         ),
-                       ),
-                     ),
-                      const SizedBox(height: 50,),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: btnHexColor,
-                          padding: const EdgeInsets.only(
-                            left: 50,
-                            right: 50,
-                            top: 12,
-                            bottom: 12
+                     
+                      Container(
+                        height: 48,
+                        width: 124,
+                        margin: const EdgeInsets.only(top: 20),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: btnHexColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)
+                            )
+                      
                           ),
-
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                          )
-
-                        ),
-                        onPressed: (){
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => const EditProfile())
-                          // );
-                        }, 
-                        child: const Text(
-                          'Edit',
-                          style: TextStyle(
-                            fontSize: 24,
+                          onPressed: (){
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => const EditProfile())
+                            // );
+                          }, 
+                          child: const Text(
+                            'Edit',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
