@@ -1,6 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/reuseButton.dart';
 import 'package:untitled1/widget/reuseTextField.dart';
@@ -15,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
+  final storage = const FlutterSecureStorage();
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   @override
@@ -61,7 +64,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 10,),
                   Container(
-                    width: 300,
+                    width: 300,decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+
                     child: reuseTextField("Email", Icons.email, false, _emailTextController),
 
                   ),
@@ -70,30 +83,42 @@ class _LoginPageState extends State<LoginPage> {
                     width: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //     color: Colors.black38,
-                      //     blurRadius: 4,
-                      //     offset: Offset(0, 3),
-                      //   ),
-                      // ],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: passwordTextField("Password", Icons.lock, true, _passwordTextController),
                   ),
 
                   const SizedBox(height: 25,),
                   signInButton(context, true, () async{
-                    if(_formKey.currentState!.validate()) {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text).then((value) {
-                        Navigator.push(context,
+                    try{
+                      if(_formKey.currentState!.validate()) {
+                        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text);
+                        if (kDebugMode) {
+                          print(userCredential.user?.uid);
+                          await storage.write(key: "uid", value: userCredential.user?.uid);
+                        }
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
-                      });
-                      setState(() {
-
-                      });
+                                builder: (context) => const HomePage()
+                            )
+                        );
+                        setState(() {
+                        });
+                      }
+                    }on FirebaseAuthException catch(e) {
+                      if(e.code == 'user-not-found'){
+                        if (kDebugMode) {
+                          print("User not found");
+                        }
+                      }
                     }
                   }),
                   const SizedBox(height: 40),

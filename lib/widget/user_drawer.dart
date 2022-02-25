@@ -1,8 +1,10 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:untitled1/models/user_models.dart';
+import 'package:untitled1/pages/login.dart';
 import '../constants/constant_color.dart';
-import '../pages/user_profile_page.dart';
 
 class UserDrawer extends StatefulWidget {
 
@@ -13,8 +15,10 @@ class UserDrawer extends StatefulWidget {
 }
 
 class _UserDrawerState extends State<UserDrawer> {
-  List<User> profileList = [
-    User(
+
+  final storage = const FlutterSecureStorage();
+  List<Person> profileList = [
+    Person(
       name: "Minami Fuji",
       email: "minamifuji@gmail.com",
       img: "https://i.pinimg.com/564x/db/4f/f0/db4ff0711fdd26881addbeede5c56d2b.jpg"
@@ -58,30 +62,35 @@ class _UserDrawerState extends State<UserDrawer> {
                      
                      ),
                    onTap: () {
-                     Navigator.push(context, 
-                      MaterialPageRoute(builder: (context) => const UserProfile())
-                     );
+                     // Navigator.push(context,
+                     //  MaterialPageRoute(builder: (context) => const UserProfile())
+                     // );
                    },
                  );
                }
              ),
             ),
             ListTile(
+              onTap: () async{
+                await FirebaseAuth.instance.signOut();
+                await storage.delete(key: "uid");
+                Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                    (route) => false);
+              },
               leading: IconButton(
-                onPressed: () {}, 
+                onPressed: () {
+
+                },
                 icon: const Icon(Icons.logout,color: Colors.black, size: 20,)
               ),
               title: const Text(
                 'Log Out',
                 style: TextStyle( 
                   fontSize: 16,
-
                   fontWeight: FontWeight.bold
                 )
                 ),
-              onTap: () {
-
-              },
             )
          ],
         ),

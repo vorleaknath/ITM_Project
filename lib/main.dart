@@ -1,17 +1,30 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/pages/login.dart';
 
-void main() async{
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  Firebase.initializeApp();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final storage = const FlutterSecureStorage();
 
-  // This widget is the root of your application.
+  MyApp({Key? key}) : super(key: key);
+
+
+  Future<bool> checkLoginStatus() async {
+    String? value = await storage.read(key: "uid");
+    if (value == null) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +42,24 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: FutureBuilder(
+        future: checkLoginStatus(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+          if(snapshot.data == false) {
+            return const LoginPage();
+          }
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Container(
+              color: const Color(0xFFE5E5E5),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          return const HomePage();
+        },
+
+      ),
     );
   }
 }

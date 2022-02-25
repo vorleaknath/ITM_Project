@@ -1,7 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/pages/login.dart';
+import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/reuseButton.dart';
 import 'package:untitled1/widget/reuseTextField.dart';
 import 'package:untitled1/widget/sign_in_option.dart';
@@ -63,6 +64,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 10,),
                   Container(
                     width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: reuseTextField("Email", Icons.email, false, _emailTextController),
 
                   ),
@@ -71,13 +82,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //     color: Colors.black38,
-                      //     blurRadius: 4,
-                      //     offset: Offset(0, 3),
-                      //   ),
-                      // ],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: passwordTextField("Password", Icons.lock, true, _passwordTextController),
                   ),
@@ -86,13 +97,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //     color: Colors.black38,
-                      //     blurRadius: 4,
-                      //     offset: Offset(0, 3),
-                      //   ),
-                      // ],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: passwordTextField("Confirm password", Icons.lock, true, _confirmPasswordTextController),
                   ),
@@ -101,14 +112,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   signInButton(context, false, () async{
                     if(_formKey.currentState!.validate()) {
                       if(_passwordTextController.text == _confirmPasswordTextController.text) {
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
+                       UserCredential userCredential = await FirebaseAuth.instance.
+                            createUserWithEmailAndPassword(
                             email: _emailTextController.text,
-                            password: _passwordTextController.text).then((
-                            value) =>
+                            password: _passwordTextController.text);
+                       if (kDebugMode) {
+                         print(userCredential);
+                       }
                             Navigator.push(context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LoginPage())));
+                                    builder: (context) => const HomePage()));
                         setState(() {});
                       }else {
                         return "Password not matched";
