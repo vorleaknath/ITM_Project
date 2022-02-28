@@ -27,8 +27,8 @@ class ProfileShap extends StatelessWidget {
             BoxShadow(
               color: inputHexColor,
               offset: const Offset(0, 1),
-              blurRadius: 2,
-              spreadRadius: 1
+              // blurRadius: 2,
+              // spreadRadius: 1
             )
           ]
         ),

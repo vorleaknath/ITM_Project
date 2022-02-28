@@ -62,6 +62,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             ),
             // onChanged: widget.onChanged,
 
+            autocorrect: false,
             controller: controller,
             keyboardType: TextInputType.emailAddress,
             cursorColor: Colors.grey,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/readInfo_widget.dart';
 import '../constants/constant_color.dart';
-import '../models/user_models.dart';
+import '../models/person_models.dart';
+import '../widget/profile_widget.dart';
 import 'edit_profile.dart';
 
 class UserProfile extends StatefulWidget {
@@ -15,14 +17,13 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
 List<User> users = [
   User(
-    img: "https://i.pinimg.com/564x/db/4f/f0/db4ff0711fdd26881addbeede5c56d2b.jpg",
+    img: 'assets/profile_pic.png',
     name: "Minami Fuji",
     email: "minamifuji@gmail.com",
     password: "*******",
     phoneNumber: "098765432"
   )
 ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,62 +53,62 @@ List<User> users = [
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     
-                    Container(
-                      margin: const EdgeInsets.only(top: 20, bottom: 15),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        // border: Border.all(color: mainHexColor, width: 2),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.4),
-                            offset: const Offset(0,2),
-                            // spreadRadius: 1,
-                            blurRadius: 3
-                          )
-                        ]
-                      ),
-                      child: CircleAvatar(
-                        radius: 70,
-                        backgroundImage: NetworkImage(users[index].img),
+                    ProfileShap(
+                      child: Stack(
+                    
+                        children: [
+                     
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(users[index].img),
+                                fit: BoxFit.fill
+                              )
+                            ),
+                          ),
+                      
+                        ],
                       ),
                     ),
-                    const Text("Profile",
-                     style: TextStyle(
-                       fontSize: 20,
-                       fontWeight: FontWeight.bold,
-                     ),
+                    
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      child: const Text("Profile",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
                  Column(
                     children: [
-                     Container(
-                       margin: const EdgeInsets.only(top: 10),
-                       child: ReadInfo(
-                         users[index].name, 
-                         Icons.person,
-                       ),
-                     ),
-                     Container(
-                       child: ReadInfo(
-                         users[index].email,
-                         Icons.email
-                       ),
-                     ),
-
-                    Container(
-                      child: ReadInfo(
-                        users[index].password, 
-                        Icons.lock
+                      //Display Username
+                      ReadInfo(
+                        text: users[index].name, 
+                        iconData: Icons.person
                       ),
-                    ),
-                     Container(
-                       child: ReadInfo(
-                         users[index].phoneNumber,
-                         Icons.phone
-                       ),
-                     ),
-                     
+
+                      //Display User Email
+                      ReadInfo(
+                        text: users[index].email, 
+                        iconData: Icons.email
+                      ),
+
+                      //User's Password
+                      ReadPassword(
+                        text: users[index].password, 
+                        iconData: Icons.lock
+                      ),
+
+                      //Display User Phone Number
+                      ReadInfo(
+                        text: users[index].phoneNumber, 
+                        iconData: Icons.phone
+                      ),
+
                       Container(
                         height: 48,
                         width: 124,

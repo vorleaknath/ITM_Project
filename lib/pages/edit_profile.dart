@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled1/pages/user_profile_page.dart';
 
 import '../constants/constant_color.dart';
-import '../models/user_models.dart';
+import '../models/person_models.dart';
 import '../widget/profile_widget.dart';
 import '../widget/pswfield_widget.dart';
 import '../widget/textfield_widget.dart';
@@ -20,7 +20,7 @@ class _EditProfileState extends State<EditProfile> {
 
   List<User> users = [
   User(
-    img: "https://i.pinimg.com/564x/db/4f/f0/db4ff0711fdd26881addbeede5c56d2b.jpg",
+    img: 'assets/profile_pic.png',
     name: "Minami Fuji",
     email: "minamifuji@gmail.com",
     password: "12345678",
@@ -35,21 +35,11 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgHexColor,
-      // appBar: AppBar(
-      //   backgroundColor: bgHexColor,
-      //   // leading: IconButton(
-      //   //   icon: const Icon(Icons.arrow_back, color: Colors.black, size: 30,),
-      //   //   onPressed: (){
-      //   //     Navigator.pop(context);
-      //   //   },
-      //   // ),
-      //   elevation: 0,
-      //   shadowColor: null,
-      // ),
 
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
+          margin: const EdgeInsets.only(top: 30),
           decoration: BoxDecoration(
             color: bgHexColor,
           ),
@@ -64,33 +54,17 @@ class _EditProfileState extends State<EditProfile> {
                   child: Stack(
                     
                     children: [
-
+                     
                       Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(users[index].img),
+                            image: AssetImage(users[index].img),
                             fit: BoxFit.fill
                           )
                         ),
                       ),
-                      Container(
-                        // margin: const EdgeInsets.only(
-                        //   left: 35,
-                        //   top: 35
-                        // ),
-                        // child: IconButton(
-                        //   alignment: Alignment.bottomRight,
-                        //   icon: const Icon(
-                        //     Icons.camera_alt_rounded, 
-                        //     // color: Colors.grey, 
-                        //     size: 20,
-                        //   ),
-                        //   onPressed: (){
-                        //   },
-                        
-                        // ),
-                      ),
+                      
                     ],
                   ),
                 ),
@@ -108,10 +82,10 @@ class _EditProfileState extends State<EditProfile> {
 
                 Column(
                   children:[
-                    
+
                     TextFieldWidget(
-                      label: 'Full Name', 
-                      text: users[index].name
+                      label: 'Email', 
+                      text: users[index].email
                     ),
 
                     // TextFieldWidget(
