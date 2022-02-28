@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/constant_color.dart';
 
+
 class PasswordFieldWidget extends StatefulWidget {
   final String text;
   final String label;
@@ -84,8 +85,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
             boxShadow: const [
               BoxShadow(
                 color: Colors.black38,
-                blurRadius: 2,
-                offset: Offset(0, 2)
+                blurRadius: 1,
+                offset: Offset(0, 1)
               )
             ]
           ),

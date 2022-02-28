@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/constant_color.dart';
 
+
 class TextFieldWidget extends StatefulWidget {
   final String text; 
   final String label;
@@ -82,8 +83,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             boxShadow: const [
               BoxShadow(
                 color: Colors.black38,
-                blurRadius: 2,
-                offset: Offset(0, 2)
+                blurRadius: 1,
+                offset: Offset(0, 1)
               )
             ]
           ),
