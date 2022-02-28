@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox( height: 5, ),
                       Text(
-                          "profile",
+                          "Profile",
                           style: GoogleFonts.lilitaOne(
                               textStyle: const TextStyle(
                                 fontWeight: FontWeight.normal,

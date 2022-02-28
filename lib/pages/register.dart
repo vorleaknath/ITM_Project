@@ -1,11 +1,14 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/pages/homepage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled1/widget/reuseButton.dart';
 import 'package:untitled1/widget/reuseTextField.dart';
 import 'package:untitled1/widget/sign_in_option.dart';
+
+import 'login.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -24,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
@@ -110,22 +113,44 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   const SizedBox(height: 25,),
                   signInButton(context, false, () async{
-                    if(_formKey.currentState!.validate()) {
-                      if(_passwordTextController.text == _confirmPasswordTextController.text) {
-                       UserCredential userCredential = await FirebaseAuth.instance.
-                            createUserWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text);
-                       if (kDebugMode) {
-                         print(userCredential);
-                       }
-                            Navigator.push(context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage()));
-                        setState(() {});
-                      }else {
-                        return "Password not matched";
+                    try{
+                      if(_formKey.currentState!.validate()) {
+                        if(_passwordTextController.text == _confirmPasswordTextController.text) {
+                          UserCredential userCredential = await FirebaseAuth
+                              .instance.createUserWithEmailAndPassword(
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text);
+                          FirebaseFirestore.instance.collection("users").doc(
+                              userCredential.user?.uid).set({
+                            "uid": userCredential.user?.uid,
+                            "email": _emailTextController.text,
+                            "password": _passwordTextController.text
+                          });
+                          if (kDebugMode) {
+                            print(userCredential.user?.uid);
+                          }
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()
+                              )
+                          );
+                          setState(() {});
+                        }else{
+                          Fluttertoast.showToast(
+                            msg: "Password not matched",
+                            gravity: ToastGravity.SNACKBAR,
+                            backgroundColor: const Color(0xFFE5E5E5),
+                            textColor: Colors.red,
+                          );
+                        }
                       }
+                    }on FirebaseAuthException catch(e) {
+                      Fluttertoast.showToast(
+                        msg: e.message!,
+                        gravity: ToastGravity.SNACKBAR,
+                        backgroundColor: const Color(0xFFE5E5E5),
+                        textColor: Colors.red,
+                      );
                     }
                   }),
                   const SizedBox(height: 40),

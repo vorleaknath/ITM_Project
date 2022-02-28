@@ -77,13 +77,13 @@ List<User> users = [
                 ),
                  Column(
                     children: [
-                     Container(
-                       margin: const EdgeInsets.only(top: 10),
-                       child: ReadInfo(
-                         users[index].name, 
-                         Icons.person,
-                       ),
-                     ),
+                     // Container(
+                     //   margin: const EdgeInsets.only(top: 10),
+                     //   child: ReadInfo(
+                     //     users[index].name,
+                     //     Icons.person,
+                     //   ),
+                     // ),
                      Container(
                        child: ReadInfo(
                          users[index].email,
@@ -97,12 +97,12 @@ List<User> users = [
                         Icons.lock
                       ),
                     ),
-                     Container(
-                       child: ReadInfo(
-                         users[index].phoneNumber,
-                         Icons.phone
-                       ),
-                     ),
+                     // Container(
+                     //   child: ReadInfo(
+                     //     users[index].phoneNumber,
+                     //     Icons.phone
+                     //   ),
+                     // ),
                      
                       Container(
                         height: 48,

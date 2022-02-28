@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 Container reuseTextField(String text, IconData icon, isPasswordType, TextEditingController controller) {
     return Container(
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Please input email";
-          }
-          if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-              .hasMatch(value)) {
-            return "Please enter valid email";
-          }
-          return null;
-        },
+        // validator: (value) {
+        //   if (value == null || value.isEmpty) {
+        //     return "";
+        //   }
+        //   if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+        //       .hasMatch(value)) {
+        //     return "";
+        //   }
+        //   return null;
+        // },
         controller: controller,
         obscureText: isPasswordType,
         autocorrect: !isPasswordType,
@@ -59,16 +59,17 @@ Container reuseTextField(String text, IconData icon, isPasswordType, TextEditing
 TextFormField passwordTextField(String text, IconData icon, isPasswordType,
     TextEditingController controller) {
   return TextFormField(
-    validator: (value) {
-      if (value == null || value.isEmpty) {
-        return "Please input password";
-      }
-      if (!RegExp(r'.{8,}$')
-          .hasMatch(value)) {
-        return "Password at least 8 characters";
-      }
-      return null;
-    },
+    // validator: (value) {
+    //   if (value == null || value.isEmpty) {
+    //     return "";
+    //   }
+    //   if (!RegExp(r'.{8,}$')
+    //       .hasMatch(value)) {
+    //     // return "Password at least 8 characters";
+    //     return "";
+    //   }
+    //   return null;
+    // },
     controller: controller,
     obscureText: isPasswordType,
     autocorrect: !isPasswordType,

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/reuseButton.dart';
 import 'package:untitled1/widget/reuseTextField.dart';
@@ -114,11 +115,12 @@ class _LoginPageState extends State<LoginPage> {
                         });
                       }
                     }on FirebaseAuthException catch(e) {
-                      if(e.code == 'user-not-found'){
-                        if (kDebugMode) {
-                          print("User not found");
-                        }
-                      }
+                      Fluttertoast.showToast(
+                        msg: e.message!, 
+                        gravity: ToastGravity.SNACKBAR,
+                        backgroundColor: const Color(0xFFE5E5E5),
+                        textColor: Colors.red,
+                      );
                     }
                   }),
                   const SizedBox(height: 40),
