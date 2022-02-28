@@ -34,6 +34,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgHexColor,
       // appBar: AppBar(
       //   backgroundColor: bgHexColor,
       //   // leading: IconButton(
@@ -113,18 +114,18 @@ class _EditProfileState extends State<EditProfile> {
                       text: users[index].name
                     ),
 
-                    TextFieldWidget(
-                      label: 'Email', 
-                      text: users[index].email
-                    ),
+                    // TextFieldWidget(
+                    //   label: 'Email', 
+                    //   text: users[index].email
+                    // ),
                     PasswordFieldWidget(
                       label: 'Password',
                       text: users[index].password, 
                     ),
-                    TextFieldWidget(
-                      label: 'Phone Number', 
-                      text: users[index].phoneNumber
-                    ),
+                    // TextFieldWidget(
+                    //   label: 'Phone Number', 
+                    //   text: users[index].phoneNumber
+                    // ),
 
                     Container(
                       margin: const EdgeInsets.only(

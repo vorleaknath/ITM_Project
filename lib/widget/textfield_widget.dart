@@ -63,6 +63,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             // onChanged: widget.onChanged,
 
             controller: controller,
+            keyboardType: TextInputType.emailAddress,
             cursorColor: Colors.grey,
             decoration: InputDecoration(
               filled: true,
@@ -83,8 +84,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             boxShadow: const [
               BoxShadow(
                 color: Colors.black38,
-                blurRadius: 1,
-                offset: Offset(0, 1)
+                // blurRadius: 1,
+                // offset: Offset(0, 1)
               )
             ]
           ),

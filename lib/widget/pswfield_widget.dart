@@ -20,6 +20,7 @@ class PasswordFieldWidget extends StatefulWidget {
 class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
 
   late final TextEditingController controller;
+  bool _isObscure = true;
 
   @override
   void initState() {
@@ -61,10 +62,11 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
             ),
             // onChanged: widget.onChanged,
 
-            obscureText: true,
+            obscureText: _isObscure,
             enableSuggestions: false,
             autocorrect: false,
             controller: controller,
+            keyboardType: TextInputType.visiblePassword,
             cursorColor: Colors.grey,
             decoration: InputDecoration(
               filled: true,
@@ -76,7 +78,19 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
                   width: 0,
                   style: BorderStyle.none
                 )
-              )
+              ),
+
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _isObscure? Icons.visibility : Icons.visibility_off,
+                  color: btnHexColor,
+                ),
+                onPressed: (){
+                  setState(() {
+                    _isObscure = !_isObscure;
+                  });
+                },
+              ),
             ),
           ),
           
@@ -85,8 +99,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
             boxShadow: const [
               BoxShadow(
                 color: Colors.black38,
-                blurRadius: 1,
-                offset: Offset(0, 1)
+                // blurRadius: 1,
+                // offset: Offset(0, 1)
               )
             ]
           ),
