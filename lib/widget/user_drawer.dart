@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:untitled1/models/user_models.dart';
 import '../constants/constant_color.dart';
+import '../models/person_models.dart';
 import '../pages/user_profile_page.dart';
 
 class UserDrawer extends StatefulWidget {
@@ -13,11 +13,11 @@ class UserDrawer extends StatefulWidget {
 }
 
 class _UserDrawerState extends State<UserDrawer> {
-  List<User> profileList = [
-    User(
+  List<Person> profileList = [
+    Person(
       name: "Minami Fuji",
       email: "minamifuji@gmail.com",
-      img: "https://i.pinimg.com/564x/db/4f/f0/db4ff0711fdd26881addbeede5c56d2b.jpg"
+      img: "https://i.pinimg.com/564x/db/4f/f0/db4ff0711fdd26881addbeede5c56d2b.jpg", password: '', phoneNumber: ''
     )
   ];
 

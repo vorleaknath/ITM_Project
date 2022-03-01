@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/readInfo_widget.dart';
 import '../constants/constant_color.dart';
@@ -15,8 +14,8 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-List<User> users = [
-  User(
+List<Person> users = [
+  Person(
     img: 'assets/profile_pic.png',
     name: "Minami Fuji",
     email: "minamifuji@gmail.com",

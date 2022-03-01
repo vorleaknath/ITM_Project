@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled1/pages/upload.dart';
 import 'package:untitled1/pages/user_profile_page.dart';
 import '../constants/constant_color.dart';
 import '../widget/notification_drawer.dart';
@@ -172,10 +173,10 @@ class _HomePageState extends State<HomePage> {
               height: 160,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => const UserProfile()
-                  //     )
-                  // );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const UploadPage()
+                      )
+                  );
                 },
                 child: Column(
                     children: [

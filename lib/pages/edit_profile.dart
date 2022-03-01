@@ -18,8 +18,8 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
 
-  List<User> users = [
-  User(
+  List<Person> users = [
+  Person(
     img: 'assets/profile_pic.png',
     name: "Minami Fuji",
     email: "minamifuji@gmail.com",
