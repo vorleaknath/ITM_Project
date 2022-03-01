@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/pages/homepage.dart';
 import 'package:untitled1/widget/readInfo_widget.dart';
 import '../constants/constant_color.dart';
 import '../models/user_models.dart';
@@ -30,7 +31,10 @@ List<User> users = [
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black, size: 30,),
           onPressed: (){
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage())
+            );
           },
         ),
         elevation: 0,

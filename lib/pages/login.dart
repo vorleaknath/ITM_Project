@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
